@@ -11,6 +11,8 @@ permissions:
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
+    env:
+      GOOGLE_MAP_TOKEN: ${{ secrets.GOOGLE_MAP_TOKEN }}
     steps:
       - name: Overview metrics
         uses: lowlighter/metrics@latest
@@ -93,7 +95,7 @@ jobs:
           plugin_starlists_languages: yes
 
       - name: Stargazers worldmap
-        if: ${{ secrets.GOOGLE_MAP_TOKEN != '' }}
+        if: ${{ env.GOOGLE_MAP_TOKEN != '' }}
         uses: lowlighter/metrics@latest
         with:
           token: ${{ secrets.METRICS_TOKEN }}
@@ -105,11 +107,11 @@ jobs:
           plugin_stargazers: yes
           plugin_stargazers_charts: no
           plugin_stargazers_worldmap: yes
-          plugin_stargazers_worldmap_token: ${{ secrets.GOOGLE_MAP_TOKEN }}
+          plugin_stargazers_worldmap_token: ${{ env.GOOGLE_MAP_TOKEN }}
           plugin_stargazers_worldmap_sample: 200
 
       - name: Stargazers fallback
-        if: ${{ secrets.GOOGLE_MAP_TOKEN == '' }}
+        if: ${{ env.GOOGLE_MAP_TOKEN == '' }}
         uses: lowlighter/metrics@latest
         with:
           token: ${{ secrets.METRICS_TOKEN }}
