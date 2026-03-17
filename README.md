@@ -13,7 +13,7 @@
 
 <div align="center">
   <img
-    src="https://github-profile-trophy.vercel.app/?username=cita-777&theme=flat&no-frame=true&no-bg=true&margin-w=12&margin-h=12&row=1&column=6"
+    src="./github-profile-trophy.svg"
     alt="GitHub profile trophies"
   />
 </div>

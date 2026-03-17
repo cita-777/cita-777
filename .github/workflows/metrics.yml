@@ -36,6 +36,12 @@ jobs:
           plugin_isocalendar: yes
           plugin_isocalendar_duration: full-year
 
+      - name: Download GitHub profile trophies
+        run: |
+          curl -L --fail --retry 3 --retry-delay 5 \
+            "https://github-profile-trophy.vercel.app/?username=cita-777&theme=flat&no-frame=true&no-bg=true&margin-w=12&margin-h=12&row=1&column=6" \
+            -o github-profile-trophy.svg
+
       - name: Reactions metrics
         uses: lowlighter/metrics@latest
         with:
