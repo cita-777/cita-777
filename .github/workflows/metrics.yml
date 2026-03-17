@@ -38,9 +38,21 @@ jobs:
 
       - name: Download GitHub profile trophies
         run: |
-          curl -L --fail --retry 3 --retry-delay 5 \
-            "https://github-profile-trophy.vercel.app/?username=cita-777&theme=flat&no-frame=true&no-bg=true&margin-w=12&margin-h=12&row=1&column=6" \
-            -o github-profile-trophy.svg
+          set -e
+          urls=(
+            "https://github-profile-trophy.vercel.app/?username=cita-777&theme=flat&no-frame=true&no-bg=true&margin-w=12&margin-h=12&row=1&column=6"
+            "https://trophy.ryglcloud.net/?username=cita-777&theme=flat&no-frame=true&no-bg=true&margin-w=12&margin-h=12&row=1&column=6"
+            "https://gh-trophy.cdnsoft.net/?username=cita-777&theme=flat&no-frame=true&no-bg=true&margin-w=12&margin-h=12&row=1&column=6"
+          )
+
+          for url in "${urls[@]}"; do
+            if curl -L --fail --retry 3 --retry-delay 5 "$url" -o github-profile-trophy.svg; then
+              exit 0
+            fi
+          done
+
+          echo "Unable to download GitHub profile trophies from all configured sources." >&2
+          exit 1
 
       - name: Reactions metrics
         uses: lowlighter/metrics@latest
