@@ -7,7 +7,7 @@
 <table>
   <tr>
     <td width="50%" align="center">
-      <img src="./metrics-achievements.svg" alt="Achievements and notable contributions" />
+      <img src="./metrics-achievements.svg" alt="Repository stargazers" />
     </td>
     <td width="50%" align="center">
       <img src="./metrics-languages.svg" alt="Languages" />
